@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Table of Users</title>
+</head>
+<body>
+
+<h1>Users table</h1>
+<table th:border="1">
+    <thead>
+    <tr>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Возраст</th>
+        <th>Роли</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <tr th:if="${userList.isEmpty()}">
+        <td colspan="5"> No Users Found </td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${userList}">
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.surname}"></td>
+        <td th:text="${user.age}"></td>
+        <td th:text="${user.roles}"></td>
+        <td><a th:href="@{/admin/edit/{id}(id=${user.id})}">Edit</a></td>
+        <td><a th:href="@{/admin/delete/{id}(id=${user.id})}">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+</div>
+<br>
+<a th:href="@{/admin/add}">
+    <button type="button">Add user</button>
+</a>
+<br>
+<br>
+<a th:href="@{/logout}"><button type="button">Logout</button></a>
+</body>
+</html>
